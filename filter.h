@@ -87,13 +87,13 @@ friend class AdBlockClient;
   Filter();
   Filter(const Filter &other);
   Filter(const char * data, int dataLen, char *domainList = nullptr,
-      const char * host = nullptr, int hostLen = -1);
+      const char * host = nullptr, int hostLen = -1, char *condition = nullptr);
 
   Filter(FilterType filterType, FilterOption filterOption,
          FilterOption antiFilterOption,
          const char * data, int dataLen,
          char *domainList = nullptr, const char * host = nullptr,
-         int hostLen = -1);
+         int hostLen = -1, char *condition = nullptr);
 
   ~Filter();
 
@@ -190,6 +190,9 @@ friend class AdBlockClient;
   char *data;
   int dataLen;
   char *domainList;
+  // A filter condition is used for identifying and conditionally including
+  // certain filters in Brave.
+  char *condition;
   char *host;
   int hostLen;
   HashSet<ContextDomain>* domains;
